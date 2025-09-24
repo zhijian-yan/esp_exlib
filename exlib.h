@@ -1,0 +1,25 @@
+#pragma once
+
+// This header file includes all esp_exlib header files
+
+#include "exlib_config.h"
+#include "inc/exadc.h"
+#include "inc/exesp_timer.h"
+#include "inc/exgpio.h"
+#include "inc/exgptimer.h"
+#include "inc/exi2c.h"
+#include "inc/exi2s.h"
+#include "inc/exledc.h"
+#include "inc/exmcpwm.h"
+#include "inc/expcnt.h"
+#include "inc/exrmt.h"
+#include "inc/exsd.h"
+#include "inc/exsdm.h"
+#include "inc/exsocket.h"
+#include "inc/exspi.h"
+#include "inc/extemperature_sensor.h"
+#include "inc/extouch_sensor.h"
+#include "inc/extwai.h"
+#include "inc/exuart.h"
+#include "inc/exusb.h"
+#include "inc/exwifi.h"
