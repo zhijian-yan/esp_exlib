@@ -39,36 +39,4 @@ void exi2c_master_remove_device(i2c_master_dev_handle_t master_device) {
     ESP_ERROR_CHECK(i2c_master_bus_rm_device(master_device));
 }
 
-i2c_slave_dev_handle_t exi2c_slave_init(i2c_port_num_t i2c_num, gpio_num_t scl,
-                                        gpio_num_t sda, uint16_t address) {
-    i2c_slave_config_t slave_cfg = {
-        .i2c_port = i2c_num,
-        .clk_source = I2C_CLK_SRC_DEFAULT,
-        .scl_io_num = scl,
-        .sda_io_num = sda,
-        .slave_addr = address,
-        .send_buf_depth = 100,
-        .receive_buf_depth = 100,
-    };
-    i2c_slave_dev_handle_t slave_device = NULL;
-    ESP_ERROR_CHECK(i2c_new_slave_device(&slave_cfg, &slave_device));
-    return slave_device;
-}
-
-void exi2c_slave_deinit(i2c_slave_dev_handle_t slave_device) {
-    ESP_ERROR_CHECK(i2c_del_slave_device(slave_device));
-}
-
-void exi2c_slave_register_cbs(i2c_slave_dev_handle_t slave_device,
-                              i2c_slave_received_callback_t received_cb,
-                              i2c_slave_request_callback_t request_cb,
-                              void *user_data) {
-    i2c_slave_event_callbacks_t cbs = {
-        .on_receive = received_cb,
-        .on_request = request_cb,
-    };
-    ESP_ERROR_CHECK(
-        i2c_slave_register_event_callbacks(slave_device, &cbs, user_data));
-}
-
 #endif

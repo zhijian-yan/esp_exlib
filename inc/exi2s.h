@@ -9,8 +9,6 @@ extern "C" {
 #if INCLUDE_EXLIB_I2S
 
 #include "driver/i2s_std.h"
-// #include "driver/i2s_pdm.h"
-// #include "driver/i2s_tdm.h"
 
 void exi2s_new_channel(i2s_port_t i2s_num, i2s_chan_handle_t *tx_chan,
                        i2s_chan_handle_t *rx_chan);

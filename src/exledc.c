@@ -6,7 +6,6 @@ void exledc_init_all(ledc_timer_t timer, ledc_channel_t channel,
                      uint32_t freq_hz, int gpio_num) {
     exledc_timer_init(timer, freq_hz);
     exledc_channel_init(timer, channel, gpio_num);
-    exledc_set_duty(channel, 50);
 }
 
 void exledc_timer_init(ledc_timer_t timer, uint32_t freq_hz) {
