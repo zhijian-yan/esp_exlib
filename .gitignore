@@ -3,5 +3,4 @@
 !inc/
 !src/
 !CMakeLists.txt
-!exlib_config.h
-!exlib.h
+!exlib*
