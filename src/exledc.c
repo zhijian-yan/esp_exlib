@@ -3,14 +3,16 @@
 #if INCLUDE_EXLIB_LEDC
 
 void exledc_init_all(ledc_timer_t timer, ledc_channel_t channel,
-                     uint32_t freq_hz, int gpio_num) {
-    exledc_timer_init(timer, freq_hz);
+                     uint32_t freq_hz, ledc_timer_bit_t resolution_bit,
+                     int gpio_num) {
+    exledc_timer_init(timer, freq_hz, resolution_bit);
     exledc_channel_init(timer, channel, gpio_num);
 }
 
-void exledc_timer_init(ledc_timer_t timer, uint32_t freq_hz) {
+void exledc_timer_init(ledc_timer_t timer, uint32_t freq_hz,
+                       ledc_timer_bit_t resolution_bit) {
     ledc_timer_config_t ledc_tim_cfg = {.speed_mode = LEDC_LOW_SPEED_MODE,
-                                        .duty_resolution = EXLEDC_DUTY_RES,
+                                        .duty_resolution = resolution_bit,
                                         .timer_num = timer,
                                         .freq_hz = freq_hz,
                                         .clk_cfg = LEDC_AUTO_CLK};
@@ -29,28 +31,36 @@ void exledc_channel_init(ledc_timer_t timer, ledc_channel_t channel,
     ESP_ERROR_CHECK(ledc_channel_config(&ledc_chan_cfg));
 }
 
-void exledc_set_raw_duty(ledc_channel_t channel, uint32_t duty) {
+void exledc_50pwm_init(ledc_timer_t timer, ledc_channel_t channel,
+                       uint32_t freq_hz, int gpio_num) {
+    exledc_init_all(timer, channel, freq_hz, LEDC_TIMER_1_BIT, gpio_num);
+}
+
+void exledc_set_freq(ledc_timer_t timer, uint32_t freq_hz) {
+    ESP_ERROR_CHECK(ledc_set_freq(LEDC_LOW_SPEED_MODE, timer, freq_hz));
+}
+
+void exledc_set_duty(ledc_channel_t channel, uint32_t duty) {
     ESP_ERROR_CHECK(ledc_set_duty(LEDC_LOW_SPEED_MODE, channel, duty));
     ESP_ERROR_CHECK(ledc_update_duty(LEDC_LOW_SPEED_MODE, channel));
 }
 
-static double exledc_pow(int index) {
-    double ret = 1;
+static uint32_t exledc_pow(int index) {
+    uint32_t ret = 1;
     while (index) {
-        ret *= 2;
+        ret <<= 1;
         --index;
     }
     return ret;
 }
 
-void exledc_set_duty(ledc_channel_t channel, float duty) {
-    if (duty < 0)
-        duty = 0;
-    if (duty > 100)
-        duty = 100;
-    ESP_ERROR_CHECK(ledc_set_duty(LEDC_LOW_SPEED_MODE, channel,
-                                  duty / 100 * exledc_pow(EXLEDC_DUTY_RES)));
-    ESP_ERROR_CHECK(ledc_update_duty(LEDC_LOW_SPEED_MODE, channel));
+void exledc_set_duty_percent(ledc_channel_t channel, float percent,
+                             ledc_timer_bit_t resolution_bit) {
+    if (percent < 0)
+        percent = 0;
+    if (percent > 100)
+        percent = 100;
+    exledc_set_duty(channel, percent / 100.0 * exledc_pow(resolution_bit));
 }
 
 void exledc_fade_func_install(void) {
