@@ -9,5 +9,5 @@ idf_component_register(SRCS ${SRC}
                     REQUIRES nvs_flash
                     REQUIRES fatfs
                     REQUIRES esp_timer
-                    REQUIRES esp_tinyusb
+                    # REQUIRES esp_tinyusb
                     )
