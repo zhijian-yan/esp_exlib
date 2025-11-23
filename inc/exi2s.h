@@ -10,7 +10,7 @@ extern "C" {
 
 #include "driver/i2s_std.h"
 
-void exi2s_new_channel(i2s_port_t i2s_num, i2s_chan_handle_t *tx_chan,
+void exi2s_new_channel(int i2s_num, i2s_chan_handle_t *tx_chan,
                        i2s_chan_handle_t *rx_chan);
 void exi2s_del_channel(i2s_chan_handle_t chan);
 void exi2s_std_channel_init(i2s_chan_handle_t chan, gpio_num_t mclk,

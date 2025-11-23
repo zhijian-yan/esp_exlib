@@ -2,7 +2,7 @@
 
 #if INCLUDE_EXLIB_I2S
 
-void exi2s_new_channel(i2s_port_t i2s_num, i2s_chan_handle_t *tx_chan,
+void exi2s_new_channel(int i2s_num, i2s_chan_handle_t *tx_chan,
                        i2s_chan_handle_t *rx_chan) {
     i2s_chan_config_t chan_cfg =
         I2S_CHANNEL_DEFAULT_CONFIG(i2s_num, I2S_ROLE_MASTER);
