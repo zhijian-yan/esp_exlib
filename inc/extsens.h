@@ -6,7 +6,7 @@ extern "C" {
 
 #include "../exlib_config.h"
 
-#if INCLUDE_EXLIB_TEMPERATURE_SENSOR
+#if INCLUDE_EXLIB_TSENS
 
 #include "driver/temperature_sensor.h"
 

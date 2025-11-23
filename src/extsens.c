@@ -1,6 +1,6 @@
-#include "extemperature_sensor.h"
+#include "extsens.h"
 
-#if INCLUDE_EXLIB_TEMPERATURE_SENSOR
+#if INCLUDE_EXLIB_TEMPERATURE_SENS
 
 static temperature_sensor_handle_t temperature_sensor;
 
