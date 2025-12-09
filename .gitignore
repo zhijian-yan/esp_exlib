@@ -2,5 +2,7 @@
 !README.md
 !inc/
 !src/
+!inc/*
+!src/*
 !CMakeLists.txt
 !ex*
