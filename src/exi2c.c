@@ -62,7 +62,7 @@ void exi2c_slave_deinit(i2c_slave_dev_handle_t slave_device) {
 
 void exi2c_slave_register_cbs(i2c_slave_dev_handle_t slave_device,
                               i2c_slave_request_callback_t request_cb,
-                              i2c_slave_request_callback_t recieve_cb,
+                              i2c_slave_received_callback_t recieve_cb,
                               void *user_data) {
     i2c_slave_event_callbacks_t cbs = {
         .on_request = request_cb,

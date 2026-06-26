@@ -23,7 +23,7 @@ i2c_slave_dev_handle_t exi2c_slave_init(i2c_port_num_t i2c_num, gpio_num_t scl,
 void exi2c_slave_deinit(i2c_slave_dev_handle_t slave_device);
 void exi2c_slave_register_cbs(i2c_slave_dev_handle_t slave_device,
                               i2c_slave_request_callback_t request_cb,
-                              i2c_slave_request_callback_t recieve_cb,
+                              i2c_slave_received_callback_t recieve_cb,
                               void *user_data);
 
 #endif
