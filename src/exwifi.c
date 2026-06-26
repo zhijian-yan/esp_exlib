@@ -1,4 +1,4 @@
-#include "exwifi.h"
+#include "../inc/exwifi.h"
 
 #if INCLUDE_EXLIB_WIFI
 

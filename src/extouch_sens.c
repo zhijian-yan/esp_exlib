@@ -1,4 +1,4 @@
-#include "extouch_sens.h"
+#include "../inc/extouch_sens.h"
 
 #if INCLUDE_EXLIB_TOUCH_SENS
 

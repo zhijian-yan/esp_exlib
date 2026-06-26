@@ -1,4 +1,4 @@
-#include "exmcpwm.h"
+#include "../inc/exmcpwm.h"
 
 #if INCLUDE_EXLIB_MCPWM
 

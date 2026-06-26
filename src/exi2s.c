@@ -1,4 +1,4 @@
-#include "exi2s.h"
+#include "../inc/exi2s.h"
 
 #if INCLUDE_EXLIB_I2S
 

@@ -1,4 +1,4 @@
-#include "exgptimer.h"
+#include "../inc/exgptimer.h"
 
 #if INCLUDE_EXLIB_GPTIMER
 

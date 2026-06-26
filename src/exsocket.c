@@ -1,4 +1,4 @@
-#include "exsocket.h"
+#include "../inc/exsocket.h"
 
 #if INCLUDE_EXLIB_SOCKET
 

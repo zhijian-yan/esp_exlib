@@ -1,4 +1,4 @@
-#include "exadc.h"
+#include "../inc/exadc.h"
 
 #if INCLUDE_EXLIB_ADC
 

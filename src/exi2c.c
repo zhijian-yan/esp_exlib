@@ -1,4 +1,4 @@
-#include "exi2c.h"
+#include "../inc/exi2c.h"
 
 #if INCLUDE_EXLIB_I2C
 

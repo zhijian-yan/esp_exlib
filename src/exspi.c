@@ -1,4 +1,4 @@
-#include "exspi.h"
+#include "../inc/exspi.h"
 
 #if INCLUDE_EXLIB_SPI
 

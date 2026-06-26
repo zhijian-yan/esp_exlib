@@ -1,4 +1,4 @@
-#include "expcnt.h"
+#include "../inc/expcnt.h"
 
 #if INCLUDE_EXLIB_PCNT
 

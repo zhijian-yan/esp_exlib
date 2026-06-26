@@ -1,8 +1,6 @@
 file(GLOB_RECURSE SRC src/*)
 idf_component_register(SRCS ${SRC}
                     INCLUDE_DIRS "inc" "./"
-                    REQUIRES esp_adc
-                    REQUIRES esp_timer
                     REQUIRES esp_driver_gpio
                     REQUIRES esp_driver_gptimer
                     REQUIRES esp_driver_i2c
@@ -19,8 +17,10 @@ idf_component_register(SRCS ${SRC}
                     REQUIRES esp_driver_tsens
                     REQUIRES esp_driver_twai
                     REQUIRES esp_driver_uart
-                    REQUIRES lwip
+                    REQUIRES esp_adc
+                    REQUIRES esp_timer
                     REQUIRES esp_wifi
+                    REQUIRES lwip
                     REQUIRES nvs_flash
                     REQUIRES fatfs
                     # REQUIRES esp_tinyusb
