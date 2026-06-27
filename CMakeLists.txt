@@ -20,7 +20,7 @@ idf_component_register(SRCS ${SRC}
                     REQUIRES esp_adc
                     REQUIRES esp_timer
                     REQUIRES esp_wifi
-                    # REQUIRES esp_tinyusb
+                    REQUIRES esp_tinyusb
                     REQUIRES lwip
                     REQUIRES nvs_flash
                     REQUIRES fatfs

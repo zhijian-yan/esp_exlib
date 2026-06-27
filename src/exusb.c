@@ -26,6 +26,23 @@
 #define EXUSB_MSC_DESC_LEN (0)
 #endif
 
+const static tusb_desc_device_t descriptor_config = {
+    .bLength = sizeof(descriptor_config),
+    .bDescriptorType = TUSB_DESC_DEVICE,
+    .bcdUSB = 0x0200,
+    .bDeviceClass = TUSB_CLASS_MISC,
+    .bDeviceSubClass = MISC_SUBCLASS_COMMON,
+    .bDeviceProtocol = MISC_PROTOCOL_IAD,
+    .bMaxPacketSize0 = CFG_TUD_ENDPOINT0_SIZE,
+    .idVendor = EXUSB_DEVICE_DESCRIPTOR_IDVENDOR,
+    .idProduct = EXUSB_DEVICE_DESCRIPTOR_IDPRODUCT,
+    .bcdDevice = EXUSB_DEVICE_DESCRIPTOR_BCDDEVICE,
+    .iManufacturer = 0x01,
+    .iProduct = 0x02,
+    .iSerialNumber = 0x03,
+    .bNumConfigurations = 0x01,
+};
+
 const static char *exusb_string_descriptor[5] = {
     (char[]){0x09, 0x04},
     EXUSB_STRING_DESCRIPTOR_MANUFACTURER,
@@ -69,7 +86,7 @@ const static uint8_t exusb_configuration_descriptor[] = {
 
 void exusb_init(void) {
     tinyusb_config_t tusb_cfg = TINYUSB_DEFAULT_CONFIG();
-    tusb_cfg.descriptor.device = NULL;
+    tusb_cfg.descriptor.device = &descriptor_config;
     tusb_cfg.descriptor.full_speed_config = exusb_configuration_descriptor;
     tusb_cfg.descriptor.string = exusb_string_descriptor;
     tusb_cfg.descriptor.string_count =
@@ -85,7 +102,7 @@ tinyusb_msc_storage_handle_t exusb_msc_sdmmc_init(sdmmc_card_t *card,
                                                   tusb_msc_callback_t mc,
                                                   void *user_data) {
     const tinyusb_msc_storage_config_t storage_cfg = {
-        .mount_point = TINYUSB_MSC_STORAGE_MOUNT_USB,
+        .mount_point = TINYUSB_MSC_STORAGE_MOUNT_APP,
         .fat_fs =
             {
                 .base_path = NULL,
@@ -104,7 +121,7 @@ tinyusb_msc_storage_handle_t exusb_msc_spiflash_init(wl_handle_t wl_handle,
                                                      tusb_msc_callback_t mc,
                                                      void *user_data) {
     const tinyusb_msc_storage_config_t storage_cfg = {
-        .mount_point = TINYUSB_MSC_STORAGE_MOUNT_USB,
+        .mount_point = TINYUSB_MSC_STORAGE_MOUNT_APP,
         .fat_fs =
             {
                 .base_path = NULL,
@@ -153,8 +170,8 @@ void exusb_cdc_rx_echo_cb(int itf, cdcacm_event_t *event) {
 }
 #endif
 
-// HID callbacks
 #ifdef EXUSB_ENABLE_HID_INTERFACE
+// HID callbacks
 uint8_t const *tud_hid_descriptor_report_cb(uint8_t instance) {
     return exusb_hid_report_descriptor;
 }

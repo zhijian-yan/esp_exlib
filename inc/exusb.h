@@ -10,26 +10,27 @@ extern "C" {
 
 #include "class/hid/hid_device.h"
 #include "tinyusb.h"
-#include "tinyusb_console.h"
 #include "tinyusb_default_config.h"
-#include "tinyusb_net.h"
 #if CONFIG_TINYUSB_CDC_ENABLED
 #include "tinyusb_cdc_acm.h"
-
 #endif
 #if CONFIG_TINYUSB_MSC_ENABLED
 #include "tinyusb_msc.h"
 
 #endif
 
-#define EXUSB_STRING_DESCRIPTOR_MANUFACTURER "TinyUSB"
+#define EXUSB_DEVICE_DESCRIPTOR_IDVENDOR 0x303A
+#define EXUSB_DEVICE_DESCRIPTOR_IDPRODUCT 0x4002
+#define EXUSB_DEVICE_DESCRIPTOR_BCDDEVICE 0x100
+
+#define EXUSB_STRING_DESCRIPTOR_MANUFACTURER "espressif"
 #define EXUSB_STRING_DESCRIPTOR_PRODUCT "TinyUSB Device"
 #define EXUSB_STRING_DESCRIPTOR_SERIAL_NUMBER "123456"
 #define EXUSB_STRING_DESCRIPTOR_INTERFACE "USB device"
 
-// #define EXUSB_ENABLE_HID_INTERFACE
-// #define EXUSB_ENABLE_CDC_INTERFACE
-// #define EXUSB_ENABLE_MSC_INTERFACE
+#define EXUSB_ENABLE_HID_INTERFACE
+#define EXUSB_ENABLE_CDC_INTERFACE
+#define EXUSB_ENABLE_MSC_INTERFACE
 
 #define EXUSB_HID_REPORT_ID_KEYBOARD 1
 #define EXUSB_HID_REPORT_ID_MOUSE 2
@@ -47,10 +48,10 @@ tinyusb_msc_storage_handle_t exusb_msc_spiflash_init(wl_handle_t wl_handle,
                                                      tusb_msc_callback_t mc,
                                                      void *user_data);
 #endif
+
 #ifdef EXUSB_ENABLE_CDC_INTERFACE
 void exusb_cdcacm_init(tusb_cdcacm_callback_t rx, tusb_cdcacm_callback_t rxwc,
                        tusb_cdcacm_callback_t lsc, tusb_cdcacm_callback_t lcc);
-// FS USB CDC max size: 64
 esp_err_t exusb_cdcacm_write(tinyusb_cdcacm_itf_t itf, const uint8_t *buffer,
                              size_t size);
 esp_err_t exusb_cdcacm_read(tinyusb_cdcacm_itf_t itf, uint8_t *buffer,
@@ -58,6 +59,7 @@ esp_err_t exusb_cdcacm_read(tinyusb_cdcacm_itf_t itf, uint8_t *buffer,
 void exusb_cdc_rx_echo_cb(int itf, cdcacm_event_t *event);
 #endif
 
+#ifdef EXUSB_ENABLE_HID_INTERFACE
 TU_ATTR_ALWAYS_INLINE static inline bool
 exusb_hid_keyboard_report(uint8_t modifier, const uint8_t keycode[6]) {
     if (tud_mounted())
@@ -92,6 +94,7 @@ exusb_hid_gamepad_report(int8_t x, int8_t y, int8_t z, int8_t rz, int8_t rx,
                                       rx, ry, hat, buttons);
     return false;
 }
+#endif
 
 #endif
 
