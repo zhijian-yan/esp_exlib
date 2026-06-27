@@ -10,9 +10,20 @@ extern "C" {
 
 #include "class/hid/hid_device.h"
 #include "tinyusb.h"
-#include "tusb_cdc_acm.h"
-#include "tusb_console.h"
-#include "tusb_msc_storage.h"
+#include "tinyusb_cdc_acm.h"
+#include "tinyusb_console.h"
+#include "tinyusb_default_config.h"
+#include "tinyusb_msc.h"
+#include "tinyusb_net.h"
+
+#define EXUSB_STRING_DESCRIPTOR_MANUFACTURER "TinyUSB"
+#define EXUSB_STRING_DESCRIPTOR_PRODUCT "TinyUSB Device"
+#define EXUSB_STRING_DESCRIPTOR_SERIAL_NUMBER "123456"
+#define EXUSB_STRING_DESCRIPTOR_INTERFACE "USB device"
+
+#define EXUSB_ENABLE_CDC_INTERFACE
+#define EXUSB_ENABLE_HID_INTERFACE
+#define EXUSB_ENABLE_MSC_INTERFACE
 
 #define EXUSB_HID_REPORT_ID_KEYBOARD 1
 #define EXUSB_HID_REPORT_ID_MOUSE 2
@@ -21,26 +32,21 @@ extern "C" {
 #define EXUSB_HID_REPORT_ID_SYSTEM_CONTROL 5
 #define EXUSB_HID_REPORT_ID_GAMEPAD 6
 
-void exusb_init_all(sdmmc_card_t *card);
-void exusb_init(const uint8_t *configuration_descriptor);
+void exusb_init(void);
+tinyusb_msc_storage_handle_t exusb_msc_sdmmc_init(sdmmc_card_t *card,
+                                                  tusb_msc_callback_t mc,
+                                                  void *user_data);
+tinyusb_msc_storage_handle_t exusb_msc_spiflash_init(wl_handle_t wl_handle,
+                                                     tusb_msc_callback_t mc,
+                                                     void *user_data);
 void exusb_cdcacm_init(tusb_cdcacm_callback_t rx, tusb_cdcacm_callback_t rxwc,
                        tusb_cdcacm_callback_t lsc, tusb_cdcacm_callback_t lcc);
-void exusb_msc_init(sdmmc_card_t *card, tusb_msc_callback_t mc,
-                    tusb_msc_callback_t pmc);
-// 全速USB CDC 设备读写的最大大小为64
+// FS USB CDC max size: 64
 esp_err_t exusb_cdcacm_write(tinyusb_cdcacm_itf_t itf, const uint8_t *buffer,
                              size_t size);
 esp_err_t exusb_cdcacm_read(tinyusb_cdcacm_itf_t itf, uint8_t *buffer,
                             size_t size, size_t *read_size);
 void exusb_cdc_rx_echo_cb(int itf, cdcacm_event_t *event);
-// HID 回调函数声明
-uint8_t const *tud_hid_descriptor_report_cb(uint8_t instance);
-uint16_t tud_hid_get_report_cb(uint8_t instance, uint8_t report_id,
-                               hid_report_type_t report_type, uint8_t *buffer,
-                               uint16_t reqlen);
-void tud_hid_set_report_cb(uint8_t instance, uint8_t report_id,
-                           hid_report_type_t report_type, uint8_t const *buffer,
-                           uint16_t bufsize);
 
 TU_ATTR_ALWAYS_INLINE static inline bool
 exusb_hid_keyboard_report(uint8_t modifier, const uint8_t keycode[6]) {
