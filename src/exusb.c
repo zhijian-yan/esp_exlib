@@ -55,14 +55,14 @@ const static uint8_t exusb_configuration_descriptor[] = {
                               EXUSB_HID_DESC_LEN + EXUSB_MSC_DESC_LEN,
                           TUSB_DESC_CONFIG_ATT_REMOTE_WAKEUP, 100),
 #ifdef EXUSB_ENABLE_CDC_INTERFACE
-    TUD_CDC_DESCRIPTOR(0, 0, 0x81, 8, 0x02, 0x82, 64),
+    TUD_CDC_DESCRIPTOR(0, 4, 0x81, 8, 0x02, 0x82, 64),
 #endif
 #ifdef EXUSB_ENABLE_HID_INTERFACE
-    TUD_HID_DESCRIPTOR(EXUSB_CDC_INTERFACE_NUM, 0, false,
+    TUD_HID_DESCRIPTOR(EXUSB_CDC_INTERFACE_NUM, 4, false,
                        sizeof(exusb_hid_report_descriptor), 0x83, 64, 10),
 #endif
 #ifdef EXUSB_ENABLE_MSC_INTERFACE
-    TUD_MSC_DESCRIPTOR(EXUSB_CDC_INTERFACE_NUM + EXUSB_HID_INTERFACE_NUM, 0,
+    TUD_MSC_DESCRIPTOR(EXUSB_CDC_INTERFACE_NUM + EXUSB_HID_INTERFACE_NUM, 4,
                        0x04, 0x84, 64),
 #endif
 };
@@ -80,6 +80,7 @@ void exusb_init(void) {
     ESP_ERROR_CHECK(tinyusb_driver_install(&tusb_cfg));
 }
 
+#ifdef EXUSB_ENABLE_MSC_INTERFACE
 tinyusb_msc_storage_handle_t exusb_msc_sdmmc_init(sdmmc_card_t *card,
                                                   tusb_msc_callback_t mc,
                                                   void *user_data) {
@@ -118,7 +119,9 @@ tinyusb_msc_storage_handle_t exusb_msc_spiflash_init(wl_handle_t wl_handle,
     ESP_ERROR_CHECK(tinyusb_msc_set_storage_callback(mc, user_data));
     return storage_hdl;
 }
+#endif
 
+#ifdef EXUSB_ENABLE_CDC_INTERFACE
 void exusb_cdcacm_init(tusb_cdcacm_callback_t rx, tusb_cdcacm_callback_t rxwc,
                        tusb_cdcacm_callback_t lsc, tusb_cdcacm_callback_t lcc) {
     tinyusb_config_cdcacm_t acm_cfg = {
@@ -148,6 +151,7 @@ void exusb_cdc_rx_echo_cb(int itf, cdcacm_event_t *event) {
     ESP_ERROR_CHECK(exusb_cdcacm_read(itf, buffer, sizeof(buffer), &read_size));
     ESP_ERROR_CHECK(exusb_cdcacm_write(itf, buffer, read_size));
 }
+#endif
 
 // HID callbacks
 #ifdef EXUSB_ENABLE_HID_INTERFACE
