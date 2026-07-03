@@ -2,8 +2,8 @@
 
 #if INCLUDE_EXLIB_SPI
 
-void exspi_init(spi_host_device_t host_id, int sclk, int mosi, int miso,
-                int max_transfer_sz) {
+void exspi_master_init(spi_host_device_t host_id, int sclk, int mosi, int miso,
+                       int max_transfer_sz) {
     spi_bus_config_t bus_cfg = {
         .miso_io_num = miso,
         .mosi_io_num = mosi,
@@ -15,7 +15,7 @@ void exspi_init(spi_host_device_t host_id, int sclk, int mosi, int miso,
     ESP_ERROR_CHECK(spi_bus_initialize(host_id, &bus_cfg, SPI_DMA_CH_AUTO));
 }
 
-void exspi_deinit(spi_host_device_t host_id) {
+void exspi_master_deinit(spi_host_device_t host_id) {
     ESP_ERROR_CHECK(spi_bus_free(host_id));
 }
 
@@ -27,7 +27,7 @@ spi_device_handle_t exspi_add_device(spi_host_device_t host_id,
         .clock_speed_hz = clock_speed_hz,
         .mode = 0,
         .spics_io_num = cs,
-        .queue_size = EXSPI_QUEUE_SIZE,
+        .queue_size = EXSPI_MASTER_QUEUE_SIZE,
         .pre_cb = pre_cb,
         .post_cb = post_cb,
     };
@@ -134,6 +134,32 @@ void exspi_master_write_byte(spi_device_handle_t device, const uint8_t data,
 void exspi_master_polling_write_byte(spi_device_handle_t device,
                                      const uint8_t data, void *user_data) {
     exspi_master_polling_write(device, &data, 1, user_data);
+}
+
+void exspi_slave_init(spi_host_device_t host_id, int sclk, int mosi, int miso,
+                      int cs, slave_transaction_cb_t setup_cb,
+                      slave_transaction_cb_t trans_cb) {
+    spi_bus_config_t bus_cfg = {
+        .miso_io_num = miso,
+        .mosi_io_num = mosi,
+        .sclk_io_num = sclk,
+        .quadwp_io_num = -1,
+        .quadhd_io_num = -1,
+    };
+    spi_slave_interface_config_t slv_cfg = {
+        .mode = 0,
+        .spics_io_num = cs,
+        .queue_size = EXSPI_SLAVE_QUEUE_SIZE,
+        .flags = 0,
+        .post_setup_cb = setup_cb,
+        .post_trans_cb = trans_cb,
+    };
+    ESP_ERROR_CHECK(
+        spi_slave_initialize(host_id, &bus_cfg, &slv_cfg, SPI_DMA_CH_AUTO));
+}
+
+void exspi_slave_deinit(spi_host_device_t host_id) {
+    ESP_ERROR_CHECK(spi_slave_free(host_id));
 }
 
 #endif
