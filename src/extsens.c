@@ -6,7 +6,7 @@ static temperature_sensor_handle_t temperature_sensor;
 
 void extemperature_sensor_init(void) {
     temperature_sensor_config_t temp_sensor_cfg =
-        TEMPERATURE_SENSOR_CONFIG_DEFAULT(-10, 80);
+        TEMPERATURE_SENSOR_CONFIG_DEFAULT(EXTSENS_MIN_TMEP, EXTSENS_MAX_TEMP);
     ESP_ERROR_CHECK(
         temperature_sensor_install(&temp_sensor_cfg, &temperature_sensor));
 }
