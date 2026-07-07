@@ -40,8 +40,7 @@ void exi2c_master_remove_device(i2c_master_dev_handle_t master_device) {
 }
 
 void exi2c_master_write_byte(i2c_master_dev_handle_t master_device,
-                             const uint8_t data, size_t write_size,
-                             int xfer_timeout_ms) {
+                             const uint8_t data, int xfer_timeout_ms) {
     ESP_ERROR_CHECK(
         i2c_master_transmit(master_device, &data, 1, xfer_timeout_ms));
 }
@@ -83,7 +82,7 @@ uint32_t exi2c_slave_write_byte(i2c_slave_dev_handle_t slave_device,
                                 const uint8_t data, int timeout_ms) {
     uint32_t write_len = 0;
     ESP_ERROR_CHECK(
-        i2c_slave_write(slave_device, data, 1, &write_len, timeout_ms));
+        i2c_slave_write(slave_device, &data, 1, &write_len, timeout_ms));
     return write_len;
 }
 
