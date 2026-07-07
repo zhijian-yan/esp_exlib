@@ -18,6 +18,9 @@ i2c_master_dev_handle_t
 exi2c_master_add_device(i2c_master_bus_handle_t master_bus,
                         uint16_t device_address, uint32_t scl_speed_hz);
 void exi2c_master_remove_device(i2c_master_dev_handle_t master_device);
+void exi2c_master_write_byte(i2c_master_dev_handle_t master_device,
+                             const uint8_t data, size_t write_size,
+                             int xfer_timeout_ms);
 i2c_slave_dev_handle_t exi2c_slave_init(i2c_port_num_t i2c_num, gpio_num_t scl,
                                         gpio_num_t sda, uint16_t slave_address);
 void exi2c_slave_deinit(i2c_slave_dev_handle_t slave_device);
@@ -25,6 +28,8 @@ void exi2c_slave_register_cbs(i2c_slave_dev_handle_t slave_device,
                               i2c_slave_request_callback_t request_cb,
                               i2c_slave_received_callback_t recieve_cb,
                               void *user_data);
+uint32_t exi2c_slave_write_byte(i2c_slave_dev_handle_t slave_device,
+                                const uint8_t data, int timeout_ms);
 
 #endif
 
