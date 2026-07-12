@@ -4,6 +4,7 @@
 
 #include "exlib_config.h"
 #include "inc/exadc.h"
+#include "inc/exana_cmpr.h"
 #include "inc/exesp_timer.h"
 #include "inc/exgpio.h"
 #include "inc/exgptimer.h"
@@ -12,6 +13,7 @@
 #include "inc/exledc.h"
 #include "inc/exmcpwm.h"
 #include "inc/expcnt.h"
+#include "inc/exparlio.h"
 #include "inc/exrmt.h"
 #include "inc/exsd.h"
 #include "inc/exsdm.h"

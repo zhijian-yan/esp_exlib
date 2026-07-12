@@ -1,6 +1,7 @@
 file(GLOB_RECURSE SRC src/*)
 idf_component_register(SRCS ${SRC}
                     INCLUDE_DIRS "inc" "./"
+                    REQUIRES esp_driver_ana_cmpr
                     REQUIRES esp_driver_gpio
                     REQUIRES esp_driver_gptimer
                     REQUIRES esp_driver_i2c
@@ -8,6 +9,7 @@ idf_component_register(SRCS ${SRC}
                     REQUIRES esp_driver_ledc
                     REQUIRES esp_driver_mcpwm
                     REQUIRES esp_driver_pcnt
+                    REQUIRES esp_driver_parlio
                     REQUIRES esp_driver_rmt
                     REQUIRES esp_driver_sdmmc
                     REQUIRES esp_driver_sdspi
