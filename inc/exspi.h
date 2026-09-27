@@ -12,7 +12,7 @@ extern "C" {
 #include "driver/spi_slave.h"
 
 #define EXSPI_MASTER_QUEUE_SIZE 10
-#define EXSPI_SLAVE_QUEUE_SIZE 5
+#define EXSPI_SLAVE_QUEUE_SIZE  5
 
 void exspi_master_init(spi_host_device_t host_id, int sclk, int mosi, int miso,
                        int max_transfer_sz);

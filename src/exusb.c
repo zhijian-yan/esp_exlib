@@ -4,26 +4,26 @@
 
 #ifdef EXUSB_ENABLE_CDC_INTERFACE
 #define EXUSB_CDC_INTERFACE_NUM (2)
-#define EXUSB_CDC_DESC_LEN TUD_CDC_DESC_LEN
+#define EXUSB_CDC_DESC_LEN      TUD_CDC_DESC_LEN
 #else
 #define EXUSB_CDC_INTERFACE_NUM (0)
-#define EXUSB_CDC_DESC_LEN (0)
+#define EXUSB_CDC_DESC_LEN      (0)
 #endif
 
 #ifdef EXUSB_ENABLE_HID_INTERFACE
 #define EXUSB_HID_INTERFACE_NUM (1)
-#define EXUSB_HID_DESC_LEN TUD_HID_DESC_LEN
+#define EXUSB_HID_DESC_LEN      TUD_HID_DESC_LEN
 #else
 #define EXUSB_HID_INTERFACE_NUM (0)
-#define EXUSB_HID_DESC_LEN (0)
+#define EXUSB_HID_DESC_LEN      (0)
 #endif
 
 #ifdef EXUSB_ENABLE_MSC_INTERFACE
 #define EXUSB_MSC_INTERFACE_NUM (1)
-#define EXUSB_MSC_DESC_LEN TUD_MSC_DESC_LEN
+#define EXUSB_MSC_DESC_LEN      TUD_MSC_DESC_LEN
 #else
 #define EXUSB_MSC_INTERFACE_NUM (0)
-#define EXUSB_MSC_DESC_LEN (0)
+#define EXUSB_MSC_DESC_LEN      (0)
 #endif
 
 const static tusb_desc_device_t descriptor_config = {

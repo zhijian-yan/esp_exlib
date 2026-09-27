@@ -14,7 +14,9 @@ void exgpio_init(uint64_t pin_mask, gpio_mode_t mode, gpio_pullup_t pullup,
     ESP_ERROR_CHECK(gpio_config(&cfg));
 }
 
-void exgpio_deinit(gpio_num_t pin) { ESP_ERROR_CHECK(gpio_reset_pin(pin)); }
+void exgpio_deinit(gpio_num_t pin) {
+    ESP_ERROR_CHECK(gpio_reset_pin(pin));
+}
 
 void exgpio_output_init(gpio_num_t pin) {
     exgpio_init(EXGPIO_PIN_MASK(pin), GPIO_MODE_OUTPUT, 0, 0, 0);

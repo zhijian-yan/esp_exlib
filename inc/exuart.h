@@ -15,7 +15,7 @@ extern "C" {
 
 #include "driver/uart.h"
 
-#define EXUART_QUEUE_SIZE (10)
+#define EXUART_QUEUE_SIZE     (10)
 #define EXUART_RX_BUFFER_SIZE (1024 * 16)
 #define EXUART_TX_BUFFER_SIZE (1024 * 16)
 

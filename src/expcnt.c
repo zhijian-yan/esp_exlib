@@ -32,44 +32,44 @@ void expcnt_channel_config(pcnt_unit_handle_t pcnt_unit, int edge_gpio_num,
     if (edge_gpio_num != -1) {
         pcnt_channel_edge_action_t p_action = 0, n_action = 0;
         switch (edge_config) {
-        case expcnt_edge_PH_NH:
-            p_action = PCNT_CHANNEL_EDGE_ACTION_HOLD;
-            n_action = PCNT_CHANNEL_EDGE_ACTION_HOLD;
-            break;
-        case expcnt_edge_PH_NI:
-            p_action = PCNT_CHANNEL_EDGE_ACTION_HOLD;
-            n_action = PCNT_CHANNEL_EDGE_ACTION_INCREASE;
-            break;
-        case expcnt_edge_PH_ND:
-            p_action = PCNT_CHANNEL_EDGE_ACTION_HOLD;
-            n_action = PCNT_CHANNEL_EDGE_ACTION_DECREASE;
-            break;
-        case expcnt_edge_PI_NH:
-            p_action = PCNT_CHANNEL_EDGE_ACTION_INCREASE;
-            n_action = PCNT_CHANNEL_EDGE_ACTION_HOLD;
-            break;
-        case expcnt_edge_PI_NI:
-            p_action = PCNT_CHANNEL_EDGE_ACTION_INCREASE;
-            n_action = PCNT_CHANNEL_EDGE_ACTION_INCREASE;
-            break;
-        case expcnt_edge_PI_ND:
-            p_action = PCNT_CHANNEL_EDGE_ACTION_INCREASE;
-            n_action = PCNT_CHANNEL_EDGE_ACTION_DECREASE;
-            break;
-        case expcnt_edge_PD_NH:
-            p_action = PCNT_CHANNEL_EDGE_ACTION_DECREASE;
-            n_action = PCNT_CHANNEL_EDGE_ACTION_HOLD;
-            break;
-        case expcnt_edge_PD_NI:
-            p_action = PCNT_CHANNEL_EDGE_ACTION_DECREASE;
-            n_action = PCNT_CHANNEL_EDGE_ACTION_INCREASE;
-            break;
-        case expcnt_edge_PD_ND:
-            p_action = PCNT_CHANNEL_EDGE_ACTION_DECREASE;
-            n_action = PCNT_CHANNEL_EDGE_ACTION_DECREASE;
-            break;
-        default:
-            break;
+            case expcnt_edge_PH_NH:
+                p_action = PCNT_CHANNEL_EDGE_ACTION_HOLD;
+                n_action = PCNT_CHANNEL_EDGE_ACTION_HOLD;
+                break;
+            case expcnt_edge_PH_NI:
+                p_action = PCNT_CHANNEL_EDGE_ACTION_HOLD;
+                n_action = PCNT_CHANNEL_EDGE_ACTION_INCREASE;
+                break;
+            case expcnt_edge_PH_ND:
+                p_action = PCNT_CHANNEL_EDGE_ACTION_HOLD;
+                n_action = PCNT_CHANNEL_EDGE_ACTION_DECREASE;
+                break;
+            case expcnt_edge_PI_NH:
+                p_action = PCNT_CHANNEL_EDGE_ACTION_INCREASE;
+                n_action = PCNT_CHANNEL_EDGE_ACTION_HOLD;
+                break;
+            case expcnt_edge_PI_NI:
+                p_action = PCNT_CHANNEL_EDGE_ACTION_INCREASE;
+                n_action = PCNT_CHANNEL_EDGE_ACTION_INCREASE;
+                break;
+            case expcnt_edge_PI_ND:
+                p_action = PCNT_CHANNEL_EDGE_ACTION_INCREASE;
+                n_action = PCNT_CHANNEL_EDGE_ACTION_DECREASE;
+                break;
+            case expcnt_edge_PD_NH:
+                p_action = PCNT_CHANNEL_EDGE_ACTION_DECREASE;
+                n_action = PCNT_CHANNEL_EDGE_ACTION_HOLD;
+                break;
+            case expcnt_edge_PD_NI:
+                p_action = PCNT_CHANNEL_EDGE_ACTION_DECREASE;
+                n_action = PCNT_CHANNEL_EDGE_ACTION_INCREASE;
+                break;
+            case expcnt_edge_PD_ND:
+                p_action = PCNT_CHANNEL_EDGE_ACTION_DECREASE;
+                n_action = PCNT_CHANNEL_EDGE_ACTION_DECREASE;
+                break;
+            default:
+                break;
         }
         ESP_ERROR_CHECK(
             pcnt_channel_set_edge_action(pcnt_chan, p_action, n_action));
@@ -77,44 +77,44 @@ void expcnt_channel_config(pcnt_unit_handle_t pcnt_unit, int edge_gpio_num,
     if (level_gpio_num != -1) {
         pcnt_channel_level_action_t h_action = 0, l_action = 0;
         switch (level_config) {
-        case expcnt_level_HK_LK:
-            h_action = PCNT_CHANNEL_LEVEL_ACTION_KEEP;
-            l_action = PCNT_CHANNEL_LEVEL_ACTION_KEEP;
-            break;
-        case expcnt_level_HK_LI:
-            h_action = PCNT_CHANNEL_LEVEL_ACTION_KEEP;
-            l_action = PCNT_CHANNEL_LEVEL_ACTION_INVERSE;
-            break;
-        case expcnt_level_HK_LH:
-            h_action = PCNT_CHANNEL_LEVEL_ACTION_KEEP;
-            l_action = PCNT_CHANNEL_LEVEL_ACTION_HOLD;
-            break;
-        case expcnt_level_HI_LK:
-            h_action = PCNT_CHANNEL_LEVEL_ACTION_INVERSE;
-            l_action = PCNT_CHANNEL_LEVEL_ACTION_KEEP;
-            break;
-        case expcnt_level_HI_LI:
-            h_action = PCNT_CHANNEL_LEVEL_ACTION_INVERSE;
-            l_action = PCNT_CHANNEL_LEVEL_ACTION_INVERSE;
-            break;
-        case expcnt_level_HI_LH:
-            h_action = PCNT_CHANNEL_LEVEL_ACTION_INVERSE;
-            l_action = PCNT_CHANNEL_LEVEL_ACTION_HOLD;
-            break;
-        case expcnt_level_HH_LK:
-            h_action = PCNT_CHANNEL_LEVEL_ACTION_HOLD;
-            l_action = PCNT_CHANNEL_LEVEL_ACTION_KEEP;
-            break;
-        case expcnt_level_HH_LI:
-            h_action = PCNT_CHANNEL_LEVEL_ACTION_HOLD;
-            l_action = PCNT_CHANNEL_LEVEL_ACTION_INVERSE;
-            break;
-        case expcnt_level_HH_LH:
-            h_action = PCNT_CHANNEL_LEVEL_ACTION_HOLD;
-            l_action = PCNT_CHANNEL_LEVEL_ACTION_HOLD;
-            break;
-        default:
-            break;
+            case expcnt_level_HK_LK:
+                h_action = PCNT_CHANNEL_LEVEL_ACTION_KEEP;
+                l_action = PCNT_CHANNEL_LEVEL_ACTION_KEEP;
+                break;
+            case expcnt_level_HK_LI:
+                h_action = PCNT_CHANNEL_LEVEL_ACTION_KEEP;
+                l_action = PCNT_CHANNEL_LEVEL_ACTION_INVERSE;
+                break;
+            case expcnt_level_HK_LH:
+                h_action = PCNT_CHANNEL_LEVEL_ACTION_KEEP;
+                l_action = PCNT_CHANNEL_LEVEL_ACTION_HOLD;
+                break;
+            case expcnt_level_HI_LK:
+                h_action = PCNT_CHANNEL_LEVEL_ACTION_INVERSE;
+                l_action = PCNT_CHANNEL_LEVEL_ACTION_KEEP;
+                break;
+            case expcnt_level_HI_LI:
+                h_action = PCNT_CHANNEL_LEVEL_ACTION_INVERSE;
+                l_action = PCNT_CHANNEL_LEVEL_ACTION_INVERSE;
+                break;
+            case expcnt_level_HI_LH:
+                h_action = PCNT_CHANNEL_LEVEL_ACTION_INVERSE;
+                l_action = PCNT_CHANNEL_LEVEL_ACTION_HOLD;
+                break;
+            case expcnt_level_HH_LK:
+                h_action = PCNT_CHANNEL_LEVEL_ACTION_HOLD;
+                l_action = PCNT_CHANNEL_LEVEL_ACTION_KEEP;
+                break;
+            case expcnt_level_HH_LI:
+                h_action = PCNT_CHANNEL_LEVEL_ACTION_HOLD;
+                l_action = PCNT_CHANNEL_LEVEL_ACTION_INVERSE;
+                break;
+            case expcnt_level_HH_LH:
+                h_action = PCNT_CHANNEL_LEVEL_ACTION_HOLD;
+                l_action = PCNT_CHANNEL_LEVEL_ACTION_HOLD;
+                break;
+            default:
+                break;
         }
         ESP_ERROR_CHECK(
             pcnt_channel_set_level_action(pcnt_chan, h_action, l_action));

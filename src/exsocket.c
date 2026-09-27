@@ -99,7 +99,9 @@ int exsocket_udp_server_init(uint16_t port) {
     return exsocket_udp_init(port, mode_server);
 }
 
-int exsocket_udp_client_init(void) { return exsocket_udp_init(0, mode_client); }
+int exsocket_udp_client_init(void) {
+    return exsocket_udp_init(0, mode_client);
+}
 
 int exsocket_accept(int sock) {
     int client_fd = accept(sock, NULL, NULL);
