@@ -1,4 +1,4 @@
-#include "../inc/exi2c.h"
+#include "inc/exi2c.h"
 
 #if INCLUDE_EXLIB_I2C
 
@@ -45,45 +45,45 @@ void exi2c_master_write_byte(i2c_master_dev_handle_t master_device,
         i2c_master_transmit(master_device, &data, 1, xfer_timeout_ms));
 }
 
-i2c_slave_dev_handle_t exi2c_slave_init(i2c_port_num_t i2c_num, gpio_num_t scl,
-                                        gpio_num_t sda,
-                                        uint16_t slave_address) {
-    i2c_slave_config_t slv_cfg = {
-        .i2c_port = i2c_num,
-        .clk_source = I2C_CLK_SRC_DEFAULT,
-        .scl_io_num = scl,
-        .sda_io_num = sda,
-        .slave_addr = slave_address,
-        .send_buf_depth = 100,
-        .receive_buf_depth = 100,
-    };
-    i2c_slave_dev_handle_t slave_device = NULL;
-    ESP_ERROR_CHECK(i2c_new_slave_device(&slv_cfg, &slave_device));
-    return slave_device;
-}
+// i2c_slave_dev_handle_t exi2c_slave_init(i2c_port_num_t i2c_num, gpio_num_t scl,
+//                                         gpio_num_t sda,
+//                                         uint16_t slave_address) {
+//     i2c_slave_config_t slv_cfg = {
+//         .i2c_port = i2c_num,
+//         .clk_source = I2C_CLK_SRC_DEFAULT,
+//         .scl_io_num = scl,
+//         .sda_io_num = sda,
+//         .slave_addr = slave_address,
+//         .send_buf_depth = 100,
+//         .receive_buf_depth = 100,
+//     };
+//     i2c_slave_dev_handle_t slave_device = NULL;
+//     ESP_ERROR_CHECK(i2c_new_slave_device(&slv_cfg, &slave_device));
+//     return slave_device;
+// }
 
-void exi2c_slave_deinit(i2c_slave_dev_handle_t slave_device) {
-    ESP_ERROR_CHECK(i2c_del_slave_device(slave_device));
-}
+// void exi2c_slave_deinit(i2c_slave_dev_handle_t slave_device) {
+//     ESP_ERROR_CHECK(i2c_del_slave_device(slave_device));
+// }
 
-void exi2c_slave_register_cbs(i2c_slave_dev_handle_t slave_device,
-                              i2c_slave_request_callback_t request_cb,
-                              i2c_slave_received_callback_t recieve_cb,
-                              void *user_data) {
-    i2c_slave_event_callbacks_t cbs = {
-        .on_request = request_cb,
-        .on_receive = recieve_cb,
-    };
-    ESP_ERROR_CHECK(
-        i2c_slave_register_event_callbacks(slave_device, &cbs, user_data));
-}
+// void exi2c_slave_register_cbs(i2c_slave_dev_handle_t slave_device,
+//                               i2c_slave_request_callback_t request_cb,
+//                               i2c_slave_received_callback_t recieve_cb,
+//                               void *user_data) {
+//     i2c_slave_event_callbacks_t cbs = {
+//         .on_request = request_cb,
+//         .on_receive = recieve_cb,
+//     };
+//     ESP_ERROR_CHECK(
+//         i2c_slave_register_event_callbacks(slave_device, &cbs, user_data));
+// }
 
-uint32_t exi2c_slave_write_byte(i2c_slave_dev_handle_t slave_device,
-                                const uint8_t data, int timeout_ms) {
-    uint32_t write_len = 0;
-    ESP_ERROR_CHECK(
-        i2c_slave_write(slave_device, &data, 1, &write_len, timeout_ms));
-    return write_len;
-}
+// uint32_t exi2c_slave_write_byte(i2c_slave_dev_handle_t slave_device,
+//                                 const uint8_t data, int timeout_ms) {
+//     uint32_t write_len = 0;
+//     ESP_ERROR_CHECK(
+//         i2c_slave_write(slave_device, &data, 1, &write_len, timeout_ms));
+//     return write_len;
+// }
 
 #endif

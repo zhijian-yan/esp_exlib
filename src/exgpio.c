@@ -1,4 +1,4 @@
-#include "../inc/exgpio.h"
+#include "inc/exgpio.h"
 
 #if INCLUDE_EXLIB_GPIO
 

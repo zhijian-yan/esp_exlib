@@ -1,4 +1,4 @@
-#include "../inc/exuart.h"
+#include "inc/exuart.h"
 
 #if INCLUDE_EXLIB_UART
 

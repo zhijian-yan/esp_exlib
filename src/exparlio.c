@@ -1,4 +1,4 @@
-#include "../inc/exparlio.h"
+#include "inc/exparlio.h"
 
 #if INCLUDE_EXLIB_PARLIO
 

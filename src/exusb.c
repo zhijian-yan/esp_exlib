@@ -1,4 +1,4 @@
-#include "../inc/exusb.h"
+#include "inc/exusb.h"
 
 #if INCLUDE_EXLIB_USB
 

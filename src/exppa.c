@@ -1,4 +1,4 @@
-#include "../inc/exppa.h"
+#include "inc/exppa.h"
 
 #if INCLUDE_EXLIB_PPA
 

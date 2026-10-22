@@ -1,4 +1,4 @@
-#include "../inc/exsdm.h"
+#include "inc/exsdm.h"
 
 #if INCLUDE_EXLIB_SDM
 

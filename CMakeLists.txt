@@ -1,6 +1,6 @@
 file(GLOB_RECURSE SRC src/*)
 idf_component_register(SRCS ${SRC}
-    INCLUDE_DIRS "inc" "./"
+    INCLUDE_DIRS "inc" "."
     REQUIRES esp_driver_ana_cmpr
     REQUIRES esp_driver_gptimer
     REQUIRES esp_driver_gpio

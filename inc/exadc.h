@@ -4,7 +4,7 @@
 extern "C" {
 #endif
 
-#include "../exlib_config.h"
+#include "exlib_config.h"
 
 #if INCLUDE_EXLIB_ADC
 

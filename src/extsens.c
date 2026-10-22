@@ -1,4 +1,4 @@
-#include "../inc/extsens.h"
+#include "inc/extsens.h"
 
 #if INCLUDE_EXLIB_TSENS
 

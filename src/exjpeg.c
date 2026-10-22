@@ -1,4 +1,4 @@
-#include "../inc/exjpeg.h"
+#include "inc/exjpeg.h"
 
 #if INCLUDE_EXLIB_JPEG
 
