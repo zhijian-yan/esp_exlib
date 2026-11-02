@@ -5,10 +5,6 @@
 
 #pragma once
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "exlib_config.h"
 
 #if INCLUDE_EXLIB_SD
@@ -16,6 +12,10 @@ extern "C" {
 #include "driver/sdmmc_host.h"
 #include "esp_vfs_fat.h"
 #include "sdmmc_cmd.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define MOUNT_POINT "/data"
 
@@ -32,8 +32,8 @@ void exsdspi_host_deinit(sdmmc_host_t host);
 esp_err_t exsd_card_probe_and_init(const sdmmc_host_t *host,
                                    sdmmc_card_t *card);
 
-#endif
-
 #ifdef __cplusplus
 }
+#endif
+
 #endif

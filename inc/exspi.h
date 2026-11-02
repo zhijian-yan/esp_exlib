@@ -1,15 +1,15 @@
 #pragma once
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "exlib_config.h"
 
 #if INCLUDE_EXLIB_SPI
 
 #include "driver/spi_master.h"
 #include "driver/spi_slave.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define EXSPI_MASTER_QUEUE_SIZE 10
 #define EXSPI_SLAVE_QUEUE_SIZE  5
@@ -44,8 +44,8 @@ void exspi_slave_init(spi_host_device_t host_id, int sclk, int mosi, int miso,
                       slave_transaction_cb_t trans_cb);
 void exspi_slave_deinit(spi_host_device_t host_id);
 
-#endif
-
 #ifdef __cplusplus
 }
+#endif
+
 #endif

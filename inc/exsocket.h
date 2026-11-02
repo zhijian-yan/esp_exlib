@@ -1,14 +1,14 @@
 #pragma once
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "exlib_config.h"
 
 #if INCLUDE_EXLIB_SOCKET
 
 #include "lwip/sockets.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define EXSOCKET_TCP_LISTEN_BKAGLOG 10 // esp32 max value:10
 
@@ -33,8 +33,8 @@ int exsocket_sendto(int sock, const void *data, unsigned int size,
 int exsocket_recvfrom(int sock, void *data, unsigned int size,
                       struct sockaddr_in *to);
 
-#endif
-
 #ifdef __cplusplus
 }
+#endif
+
 #endif

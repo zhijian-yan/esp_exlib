@@ -1,9 +1,5 @@
 #pragma once
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "exlib_config.h"
 
 #if INCLUDE_EXLIB_RMT
@@ -11,6 +7,10 @@ extern "C" {
 #include "driver/rmt_encoder.h"
 #include "driver/rmt_rx.h"
 #include "driver/rmt_tx.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct {
     rmt_encoder_t base;
@@ -41,8 +41,8 @@ void exrmt_transmit(rmt_channel_handle_t tx_channel,
                     rmt_encoder_handle_t encoder, const void *payload,
                     size_t payload_bytes, int loop_count);
 
-#endif
-
 #ifdef __cplusplus
 }
+#endif
+
 #endif

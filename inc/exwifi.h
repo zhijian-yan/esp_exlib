@@ -1,12 +1,12 @@
 #pragma once
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "exlib_config.h"
 
 #if INCLUDE_EXLIB_WIFI
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef enum {
     exwifi_mode_ap,
@@ -19,8 +19,8 @@ void exwifi_init_apsta_mode(const char *sta_ssid, const char *sta_password,
 void exwifi_napt(void);
 void exwifi_scan(void);
 
-#endif
-
 #ifdef __cplusplus
 }
+#endif
+
 #endif

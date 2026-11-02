@@ -1,9 +1,5 @@
 #pragma once
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "exlib_config.h"
 
 #if INCLUDE_EXLIB_USB
@@ -16,7 +12,10 @@ extern "C" {
 #endif
 #if CONFIG_TINYUSB_MSC_ENABLED
 #include "tinyusb_msc.h"
+#endif
 
+#ifdef __cplusplus
+extern "C" {
 #endif
 
 #define EXUSB_DEVICE_DESCRIPTOR_IDVENDOR      0x303A
@@ -96,8 +95,8 @@ exusb_hid_gamepad_report(int8_t x, int8_t y, int8_t z, int8_t rz, int8_t rx,
 }
 #endif
 
-#endif
-
 #ifdef __cplusplus
 }
+#endif
+
 #endif

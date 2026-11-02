@@ -1,9 +1,5 @@
 #pragma once
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "exlib_config.h"
 
 #if INCLUDE_EXLIB_ADC
@@ -13,6 +9,10 @@ extern "C" {
 #include "esp_adc/adc_filter.h"
 #include "esp_adc/adc_monitor.h"
 #include "esp_adc/adc_oneshot.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 adc_oneshot_unit_handle_t exadc_oneshot_init(adc_unit_t unit_id);
 void exadc_oneshot_deinit(adc_oneshot_unit_handle_t oneshot_handle);
@@ -50,8 +50,8 @@ exadc_continuous_iir_filter_init(adc_continuous_handle_t continuous_handle,
                                  adc_unit_t unit_id, adc_channel_t channel,
                                  adc_digi_iir_filter_coeff_t coeff);
 
-#endif
-
 #ifdef __cplusplus
 }
+#endif
+
 #endif

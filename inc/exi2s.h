@@ -1,9 +1,5 @@
 #pragma once
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "exlib_config.h"
 
 #if INCLUDE_EXLIB_I2S
@@ -11,6 +7,10 @@ extern "C" {
 #include "driver/i2s_pdm.h"
 #include "driver/i2s_std.h"
 #include "driver/i2s_tdm.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct {
     uint32_t sample_rate_hz;
@@ -32,8 +32,8 @@ void exi2s_tdm_init(i2s_chan_handle_t chan, exi2s_config_t *config,
                     gpio_num_t bclk, gpio_num_t ws, gpio_num_t dout,
                     gpio_num_t din);
 
-#endif
-
 #ifdef __cplusplus
 }
+#endif
+
 #endif

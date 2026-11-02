@@ -1,15 +1,15 @@
 #pragma once
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "exlib_config.h"
 
 #if INCLUDE_EXLIB_I2C
 
 #include "driver/i2c_master.h"
 #include "driver/i2c_slave.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 i2c_master_bus_handle_t exi2c_master_init(i2c_port_num_t i2c_num,
                                           gpio_num_t scl, gpio_num_t sda);
@@ -30,8 +30,8 @@ void exi2c_slave_register_cbs(i2c_slave_dev_handle_t slave_device,
 uint32_t exi2c_slave_write_byte(i2c_slave_dev_handle_t slave_device,
                                 const uint8_t data, int timeout_ms);
 
-#endif
-
 #ifdef __cplusplus
 }
+#endif
+
 #endif

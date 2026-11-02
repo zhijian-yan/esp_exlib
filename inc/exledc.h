@@ -1,14 +1,14 @@
 #pragma once
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "exlib_config.h"
 
 #if INCLUDE_EXLIB_LEDC
 
 #include "driver/ledc.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 void exledc_init_all(ledc_timer_t timer, ledc_channel_t channel,
                      uint32_t freq_hz, ledc_timer_bit_t resolution_bit,
@@ -30,8 +30,8 @@ void exledc_fade_with_step(ledc_channel_t channel, uint32_t tar_duty,
 void exledc_50pwm_init(ledc_timer_t timer, ledc_channel_t channel,
                        uint32_t freq_hz, int gpio_num);
 
-#endif
-
 #ifdef __cplusplus
 }
+#endif
+
 #endif

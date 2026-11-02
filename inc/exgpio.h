@@ -1,15 +1,15 @@
 #pragma once
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "exlib_config.h"
 
 #if INCLUDE_EXLIB_GPIO
 
 #include "driver/dedic_gpio.h"
 #include "driver/gpio.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define EXGPIO_PIN_MASK(pin) (1ULL << pin)
 
@@ -37,8 +37,8 @@ void exgpio_dedic_gpio_set_level(dedic_gpio_bundle_handle_t bundle_handle,
 int exgpio_dedic_gpio_get_level(dedic_gpio_bundle_handle_t bundle_handle,
                                 uint32_t offset);
 
-#endif
-
 #ifdef __cplusplus
 }
+#endif
+
 #endif

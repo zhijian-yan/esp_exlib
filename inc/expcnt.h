@@ -1,14 +1,14 @@
 #pragma once
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include "exlib_config.h"
 
 #if INCLUDE_EXLIB_PCNT
 
 #include "driver/pulse_cnt.h"
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define GLITCH_NS 1000
 
@@ -62,8 +62,8 @@ void expcnt_register_cbs(pcnt_unit_handle_t pcnt_unit, pcnt_watch_cb_t watch_cb,
 pcnt_unit_handle_t expcnt_encoder_init(int encoder_pin_1, int encoder_pin_2);
 int expcnt_get_encoder_state(pcnt_unit_handle_t pcnt, int *cnt, int scale);
 
-#endif
-
 #ifdef __cplusplus
 }
+#endif
+
 #endif
